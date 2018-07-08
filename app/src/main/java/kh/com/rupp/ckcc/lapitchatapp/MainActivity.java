@@ -86,10 +86,16 @@ public class MainActivity extends AppCompatActivity {
             sendToStart();
 
         }
+
         if(item.getItemId()==R.id.main_acc_setting_btn)
         {
             Intent settingIntent = new Intent(MainActivity.this,SettingsActivity.class);
             startActivity(settingIntent);
+        }
+
+        if(item.getItemId() == R.id.main_all){
+            Intent usersIntent = new Intent(MainActivity.this,UsersActivity.class);
+            startActivity(usersIntent);
         }
         return true;
     }
