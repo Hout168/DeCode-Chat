@@ -49,12 +49,13 @@
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/login_password"
+        android:layout_alignRight="@+id/login_password"
         android:layout_below="@+id/login_password"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@+id/txt_login"
-        android:layout_toRightOf="@+id/txt_login"
+        android:layout_marginTop="14dp"
+        android:background="@color/colorPrimary"
         android:text="Login"
-        />
+        android:textColor="#fff" />
 
 
 </RelativeLayout>
