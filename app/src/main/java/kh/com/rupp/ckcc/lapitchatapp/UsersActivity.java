@@ -1,5 +1,7 @@
 package kh.com.rupp.ckcc.lapitchatapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,11 +56,24 @@ public class UsersActivity extends AppCompatActivity {
 
         ) {
             @Override
-            protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int i) {
+            protected void populateViewHolder(UsersViewHolder usersViewHolder, Users users, int position) {
 
                 usersViewHolder.setName(users.getName());
                 usersViewHolder.setStatus(users.getStatus());
                 usersViewHolder.setImage(users.getImage());
+
+                final String user_id = getRef(position).getKey();
+
+                usersViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent profileIntent = new Intent(UsersActivity.this,ProfileActivity.class);
+                        profileIntent.putExtra("user_id",user_id);
+                        startActivity(profileIntent);
+
+                    }
+                });
 
 
             }
@@ -94,7 +109,7 @@ public class UsersActivity extends AppCompatActivity {
         public void setImage(String image){
 
             CircleImageView userImage = mView.findViewById(R.id.users_single_image);
-            Picasso.get().load(image).into(userImage);
+            Picasso.get().load(image).placeholder(R.drawable.default_profile).into(userImage);
 
         }
     }

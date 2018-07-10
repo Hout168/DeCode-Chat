@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static final String TAG = "kaka";
+    //private static final String TAG = "kaka";
 
     private Toolbar mToolbar;
 
@@ -46,14 +46,15 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Login");
 
-        Log.d(TAG,"Start...");
+        //Log.d(TAG,"Start...");
         mLoginProgress = new ProgressDialog(this);
+
 
         mLoginEmail = findViewById(R.id.login_email);
         mLoginPassword = findViewById(R.id.login_password);
         mLogin_btn = findViewById(R.id.btn_login);
 
-
+        mLoginEmail.requestFocus();
 
         mLogin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
