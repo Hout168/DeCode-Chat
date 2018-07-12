@@ -12,11 +12,15 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "Hout";
     private FirebaseAuth mAuth;
+    private DatabaseReference mUserRef;
     private Toolbar mToolbar;
 
     private ViewPager mViewPager;
@@ -36,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("DeCode Chat");
+        if(mAuth.getCurrentUser() != null) {
 
-        //mToolbar.setTitle("Lapit");
+            mUserRef = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getCurrentUser().getUid());
 
+        }
         //Tab Bar
         mViewPager = findViewById(R.id.main_tabPager);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -59,7 +65,20 @@ public class MainActivity extends AppCompatActivity {
 
             sendToStart();
             
+        }else {
+            mUserRef.child("online").setValue("true");
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null) {
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
+            //mUserRef.child("lastSeen").setValue(ServerValue.TIMESTAMP);
+        }
+
     }
 
     private void sendToStart() {
@@ -82,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(item.getItemId() == R.id.main_log_out){
 
+            mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
             FirebaseAuth.getInstance().signOut();
             sendToStart();
 
@@ -99,4 +119,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
 }
