@@ -70,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:textColor="#fff"
         android:layout_below="@+id/textInputLayout3"
         android:layout_marginTop="17dp"
         android:text="Create an account"
@@ -91,6 +92,18 @@
         android:paddingStart="20dp"
         android:paddingLeft="20dp"
         android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/reg_CreateBtn"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:text="By clicking Create Account,  you agree to our Terms and that you have read our Data Use Policy, including our Cookie Use." />
 
 
 </RelativeLayout>
